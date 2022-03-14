@@ -10,9 +10,8 @@ class ListViewModel: ViewModel() {
         personajes.value = loadData()
     }
     fun loadData(): List<Personaje> = listOf(
-            Personaje(1,"Rick Sanchez", "Humano", "Male", ""),
-            Personaje(2,"Morty", "Humano", "Male", ""),
-            Personaje(3,"Julio", "Humano", "Male", ""),
-            Personaje(4, "Amber", "Humano", "Female",""))
-
+        Personaje(1,"Rick Sanchez", "Humano", "Male", "https://rickandmortyapi.com/api/character/avatar/1.jpeg"),
+        Personaje(2,"Morty Smith", "Humano", "Male", "https://rickandmortyapi.com/api/character/avatar/2.jpeg"),
+        Personaje(5,"Jerry Smith", "Humano", "Male", "https://rickandmortyapi.com/api/character/avatar/5.jpeg"),
+        Personaje(4, "Summer Smith", "Humano", "Female","https://rickandmortyapi.com/api/character/avatar/3.jpeg"))
 }

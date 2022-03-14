@@ -28,17 +28,20 @@ class ListFragment : Fragment(), PersonajeClick {
         binding.listado.adapter = adapter
         model.personajes.observe(viewLifecycleOwner,{
             adapter.updateData(it)
+            if (binding.swipeLayout.isRefreshing) {
+                binding.swipeLayout.isRefreshing = false
+            }
         } )
-        model.refresh();
-        binding.container.setOnClickListener{
-
+        binding.swipeLayout.setOnRefreshListener {
+            model.refresh()
         }
+        model.refresh();
         // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onClick(personaje: Personaje) {
-        val action = ListFragmentDirections.actionListFragmentToDetailFragment(personaje.name, personaje.species, personaje.gender)
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(personaje)
         binding.root.findNavController().navigate(action);
     }
 }

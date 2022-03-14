@@ -39,5 +39,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/especie_personaje"
             tools:text="Masculino" />
+        <Button
+            android:id="@+id/btn_ir_a_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ir a pagina web"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sexo_personaje"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,32 +8,29 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import gt.edu.galileo.a2022progravsemana5.R
+import gt.edu.galileo.a2022progravsemana5.databinding.PersonajeItemBinding
 import gt.edu.galileo.a2022progravsemana5.model.Personaje
 
 class PersonajeAdapter(val arreglo: ArrayList<Personaje>, val clickPersonaje: PersonajeClick) :
     RecyclerView.Adapter<PersonajeAdapter.PersonajeViewHolder>() {
-    class PersonajeViewHolder(val view: View, val click: PersonajeClick) : RecyclerView.ViewHolder(view) {
-        val id = view.findViewById<TextView>(R.id.txt_id)
-        val nombre = view.findViewById<TextView>(R.id.txt_nombre)
-        val especie = view.findViewById<TextView>(R.id.txt_especie)
-        val contenido = view.findViewById<LinearLayout>(R.id.contenido)
+    class PersonajeViewHolder(val view: PersonajeItemBinding, val click: PersonajeClick) : RecyclerView.ViewHolder(view.root) {
         fun bind(personaje: Personaje) {
-            nombre.text = personaje.name
-            especie.text = personaje.species
-            id.text = personaje.id.toString()
-            contenido.setOnClickListener{
+            view.imgPersonaje.cargaImagen(personaje.image)
+            view.contenido.setOnClickListener{
                 click.onClick(personaje)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PersonajeViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.personaje_item, parent, false),
-        clickPersonaje
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonajeViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val personajeBinding = PersonajeItemBinding.inflate(inflater, parent, false)
+        return PersonajeViewHolder(personajeBinding, clickPersonaje)
+    }
 
 
     override fun onBindViewHolder(holder: PersonajeViewHolder, position: Int) {
+        holder.view.personaje = arreglo[position]
         holder.bind(arreglo[position])
     }
 
